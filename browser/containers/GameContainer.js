@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state) => {
   return {
     host: state.host,
-    room: state.room
+    room: state.room,
+    users: state.users
   };
 }
 
@@ -23,7 +24,7 @@ class GameContainer extends React.Component{
   render(){
     return (
       <div>
-      {this.state.round ? <h1> ROUND FOUND </h1> : <Waiting room={this.props.room} host={this.props.host} />}
+      {this.state.round ? <h1> ROUND FOUND </h1> : <Waiting users={this.props.users} room={this.props.room} host={this.props.host} />}
       </div>
     );
   }

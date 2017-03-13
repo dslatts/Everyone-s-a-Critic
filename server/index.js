@@ -55,6 +55,11 @@ io.on('connection', (socket) => {
         socket.join(roomId);
     });
 
+    socket.on('newUser', (payload) => {
+        console.log('triggered this')
+        socket.join(payload.roomId);
+        io.emit('userJoined', {name: payload.userName})
+    })
     //game event handlers here
 
 });
