@@ -12,8 +12,8 @@ server.on('request', app);
 const io = socketio(server);
 
 
-server.listen(6969, function () {
-    console.log('The server waits: 6969')
+server.listen(8080, function () {
+    console.log('Connect to port: 8080')
 });
 
 
@@ -43,7 +43,23 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
 
-//event listener
+//listen for connection
 io.on('connection', (socket) => {
     console.log('client has connected');
+
+    //socket event handlers here
+    socket.on('createRoom', () => {
+        const roomId = 1234;
+        console.log('creating room' + roomId);
+        socket.emit('roomCreated', {roomId: roomId});
+        socket.join(roomId);
+    });
+
+    socket.on('newUser', (payload) => {
+        console.log('triggered this')
+        socket.join(payload.roomId);
+        io.emit('userJoined', {name: payload.userName})
+    })
+    //game event handlers here
+
 });
