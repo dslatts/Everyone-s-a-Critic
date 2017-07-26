@@ -74,7 +74,7 @@ export default class Canvas extends React.Component{
 
   render(){
     return (
-    <div>
+    <div className="canvas-container">
       <canvas
         id="paintCanvas"
         ref={(canvas) => {this.canvasRef = canvas;}}

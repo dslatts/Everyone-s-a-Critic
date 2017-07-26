@@ -18,11 +18,11 @@ export default function Toolbox(props){
             />)
         )}
       </div>
-      <div id={'toolButtons'}>
+      <div id="toolButtons">
         <button onClick={props.clearCanvas}> CLEAR </button>
         <button className={props.erase} onClick={props.toggleEraser}> ERASER </button>
       </div>
-      <div id={'brushes'}>
+      <div id="brushes">
         {brushSizes.map((brush, i) => (<button
           className={(props.selectedSize === brush + '') ? 'selectedBrush' : 'brush'}
           key={brush}
